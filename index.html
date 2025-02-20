@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Calculadora</title>
+</head>
+<body>
+    <main>
+        <div class="calculadora">
+            <div class="container-resultado">
+                <p class="display" id="display-anterior"></p>
+                <p class="display" id="display-atual"></p>
+            </div>
+            <div class="teclado">
+                <div class="teclado-numeros">
+                    <div>
+                        <button onclick="registrarNumero(7)" class="botao-teclado" id="7">7</button>
+                        <button onclick="registrarNumero(8)" class="botao-teclado" id="8">8</button>
+                        <button onclick="registrarNumero(9)" class="botao-teclado" id="9">9</button>
+                    </div>
+                    <div>
+                        <button onclick="registrarNumero(4)" class="botao-teclado" id="4">4</button>
+                        <button onclick="registrarNumero(5)" class="botao-teclado" id="5">5</button>
+                        <button onclick="registrarNumero(6)" class="botao-teclado" id="6">6</button>
+                    </div>
+                    <div>
+                        <button onclick="registrarNumero(1)" class="botao-teclado" id="1">1</button>
+                        <button onclick="registrarNumero(2)" class="botao-teclado" id="2">2</button>
+                        <button onclick="registrarNumero(3)" class="botao-teclado" id="3">3</button>
+                    </div>
+                    <div>
+                        <button onclick="limpar()" class="auxiliar">CE</button>
+                        <button onclick="registrarNumero(0)" class="botao-teclado" id="0">0</button>
+                        <button onclick="deletar()" class="auxiliar">DEL</button>
+                    </div>
+                </div>
+                <div class="teclado-operadores">
+                    <button onclick="registrarOperacao(divisao)" class="botao-teclado" id="divisao">/</button>
+                    <button onclick="registrarOperacao(multiplicacao)" class="botao-teclado" id="multiplicacao">X</button>
+                    <button onclick="registrarOperacao(subtracao)" class="botao-teclado" id="subtracao">-</button>
+                    <button onclick="registrarOperacao(adicao)" class="botao-teclado" id="adicao">+</button>
+                </div>
+            </div>
+            <button onclick="exibirResultado()" class="botao-resultado">=</button>
+        </div>
+        
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>

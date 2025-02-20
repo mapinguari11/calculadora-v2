@@ -1,0 +1,89 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    border: none;
+}
+
+main {
+    margin: 5% 20%;
+    padding: 2rem;
+}
+
+.calculadora {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    background-color: #48CFCB;
+    border: 1px solid #000;
+    border-radius: 20px;
+    margin: 0 32%;
+    padding: 0.5rem;
+    font-size: 32px;
+}
+
+.container-resultado {
+    background-color: #F5F5F5;
+    border: 1px solid #000;
+    border-radius: 10px;
+    width: 95%;
+    padding: 0.5rem 1rem;
+    height: 2.5rem;
+    font-size: 14px;
+}
+
+.teclado {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.teclado-numeros {
+    height: 100%;
+}
+
+.teclado-operadores {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.botao-teclado {
+    background-color: #F5F5F5;
+    border: 1px solid #424242;
+    border-radius: 10px;
+    height: 50px;
+    width: 40px;
+    padding: 1rem;
+}
+
+.fake {
+    background-color: #48CFCB;
+    color: #48CFCB;
+    border: 1px solid #48CFCB;
+    height: 50px;
+    width: 40px;
+    padding: 1rem;
+}
+
+.botao-resultado {
+    background-color: #F5F5F5;
+    border: 1px solid #424242;
+    border-radius: 20px;
+    width: 95%;
+    height: 30px;
+}
+
+.auxiliar {
+    background-color: #FFCFEF;
+    border: 1px solid #424242;
+    border-radius: 10px;
+    height: 50px;
+    width: 40px;
+    padding: 0.5rem;
+}
+
+button:hover {
+    background-color: #229799;
+}
