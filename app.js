@@ -1,50 +1,63 @@
 let displayAnterior = document.getElementById('display-anterior');
 let displayAtual = document.getElementById('display-atual');
-let valorAtual = extrairNumeros(displayAtual.textContent);
-let valorAnterior = extrairNumeros(displayAnterior.textContent);
+let valorAtual = parseFloat(extrairNumeros(displayAtual.textContent));
+let valorAnterior = parseFloat(extrairNumeros(displayAnterior.textContent));
 let calculadora = 0;
 let tipo = '';
 
+if (isNaN(valorAnterior)) valorAnterior = 0;
+if (isNaN(valorAtual)) valorAtual = 0;
+
 function registrarNumero(id) { 
+    
     // registra qual tecla de número o usuário pressionou e mostra no visor 
     let numero = id;
     let conteudoDisplayAtual = displayAtual.textContent; // pega o que já está armazenado no display de cima 
-    console.log(numero);
-    displayAtual.innerHTML = conteudoDisplayAtual + numero; // atualiza o display com o novo número digitado
+    
+    if (conteudoDisplayAtual === '0') {
+        displayAtual.innerHTML = numero;    
+    } else {
+        displayAtual.innerHTML = conteudoDisplayAtual + numero; // atualiza o display com o novo número digitado
+    }
+    
     limitarTamanho(displayAtual, 25);
 }
 
 function registrarOperacao(operacao) {
-
     valorAnterior = extrairNumeros(displayAnterior.textContent);
     valorAtual = displayAtual.textContent;
 
-    console.log('Valor anterior: ' + valorAnterior.textContent);
-    
-    if (valorAnterior) {
-        calcular();
-        console.log('Calculadora: ' + calculadora);
-        displayAnterior.innerHTML = calculadora;
-        displayAtual.innerHTML = '';
-    } else {
-        displayAnterior.innerHTML = displayAtual.textContent;
-        displayAtual.innerHTML = '';
+    // Verifica se o valor atual é um número válido
+    if (!isNaN(parseFloat(valorAtual)) && valorAtual !== '') {
+        if (valorAnterior) {
+            calcular();
+            displayAnterior.innerHTML = calculadora;
+            displayAtual.innerHTML = '';
+        } else {
+            displayAnterior.innerHTML = displayAtual.textContent;
+            displayAtual.innerHTML = '';
+        }
     }
+
     tipo = operacao;
 
-    switch (tipo) {
-        case adicao:
-            displayAnterior.innerHTML = displayAnterior.textContent + '+';
-            break;
-        case subtracao:
-            displayAnterior.innerHTML = displayAnterior.textContent + '-';
-            break
-        case multiplicacao:
-            displayAnterior.innerHTML = displayAnterior.textContent + 'x';
-            break
-        case divisao:
-            displayAnterior.innerHTML = displayAnterior.textContent + '/';
-            break;
+    // Atualiza o display anterior com o valor anterior e o novo operador
+    let valorDisplayAnterior = extrairNumeros(displayAnterior.textContent);
+    if (!isNaN(parseFloat(valorDisplayAnterior)) && valorDisplayAnterior !== '') {
+        switch (tipo) {
+            case adicao:
+                displayAnterior.innerHTML = valorDisplayAnterior + '+';
+                break;
+            case subtracao:
+                displayAnterior.innerHTML = valorDisplayAnterior + '-';
+                break;
+            case multiplicacao:
+                displayAnterior.innerHTML = valorDisplayAnterior + 'x';
+                break;
+            case divisao:
+                displayAnterior.innerHTML = valorDisplayAnterior + '/';
+                break;
+        }
     }
 }
 
@@ -77,14 +90,16 @@ function calcular() {
 }
 
 function exibirResultado() {
+    if (displayAtual)
     calcular();
-    displayAnterior.innerHTML = calculadora;
-    displayAtual.innerHTML = '';
+    displayAtual.innerHTML = calculadora;
+    displayAnterior.innerHTML = '';
+    calculadora = 0;
 }
 
 function extrairNumeros(conteudo) {
     // Remove tudo que não for número
-    return conteudo.replace(/\D+/g, '');
+    return conteudo.replace(/[^0-9.]/g, '');
 }
 
 function limpar() {
