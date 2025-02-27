@@ -5,9 +5,6 @@ let valorAnterior = parseFloat(extrairNumeros(displayAnterior.textContent));
 let calculadora = 0;
 let tipo = '';
 
-if (isNaN(valorAnterior)) valorAnterior = 0;
-if (isNaN(valorAtual)) valorAtual = 0;
-
 function registrarNumero(id) { 
     
     // registra qual tecla de número o usuário pressionou e mostra no visor 
@@ -24,6 +21,7 @@ function registrarNumero(id) {
 }
 
 function registrarOperacao(operacao) {
+    console.log(operacao.textContent);
     valorAnterior = extrairNumeros(displayAnterior.textContent);
     valorAtual = displayAtual.textContent;
 
@@ -64,12 +62,9 @@ function registrarOperacao(operacao) {
 function calcular() {
     valorAnterior = extrairNumeros(displayAnterior.textContent);
     valorAtual = displayAtual.textContent;
-    console.log(`Anterior: ${valorAnterior}`);
-    console.log(`Atual: ${valorAtual}`);
     switch (tipo) {
         case adicao:
             calculadora = parseInt(valorAnterior) + parseInt(valorAtual);
-            console.log(calculadora);
             break;
         case subtracao:
             calculadora = parseInt(valorAnterior) - parseInt(valorAtual);
@@ -90,11 +85,15 @@ function calcular() {
 }
 
 function exibirResultado() {
-    if (displayAtual)
-    calcular();
-    displayAtual.innerHTML = calculadora;
-    displayAnterior.innerHTML = '';
-    calculadora = 0;
+    if (displayAnterior.textContent === '' || displayAtual.textContent === '') {
+        alert('Operação não reconhecida');
+        return;
+    } else {
+        calcular();
+        displayAtual.innerHTML = calculadora;
+        displayAnterior.innerHTML = '';
+        calculadora = 0;
+    }
 }
 
 function extrairNumeros(conteudo) {
